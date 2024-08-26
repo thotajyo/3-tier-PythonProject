@@ -11,7 +11,6 @@ sudo yum install git -y
 sudo dnf install java-11-amazon-corretto -y
 
 #------------jenkins install-------------
-
 sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
 sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key
 sudo yum install jenkins -y
@@ -32,17 +31,16 @@ sudo yum -y install terraform
 #cd bin
 #chmod +x startup.sh
 
+
+
 #---------------------------Maven install -------------
 sudo yum install maven -y
 
 #---------------------------kubectl install ---------------
-
 sudo curl -o kubectl https://amazon-eks.s3.us-west-2.amazonaws.com/1.19.6/2021-01-05/bin/linux/amd64/kubectl
 sudo chmod +x ./kubectl
 sudo mv ./kubectl /usr/local/bin 
-
 # -----------------------------eksctl install--------------------------------
-
 sudo curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
 sudo mv /tmp/eksctl /usr/local/bin
 
@@ -55,7 +53,7 @@ tar -zxvf helm-v3.6.0-linux-amd64.tar.gz
 
 sudo mv linux-amd64/helm /usr/local/bin/helm
 
-chmod 777 /usr/local/bin/helm  # To give permissions
+chmod 777 /usr/local/bin/helm  # give permissions
 
 #------------------Docker install-------------
 #sudo amazon-linux-extras install docker #linux 2022
@@ -96,16 +94,16 @@ sudo wget -O /etc/yum.repos.d/sonar.repo http://downloads.sourceforge.net/projec
 sudo yum -y install sonar
 
 #-----------------------JFROg-----------------------------
-#sudo wget https://releases.jfrog.io/artifactory/artifactory-rpms/artifactory-rpms.repo -O jfrog-artifactory-rpms.repo;
+sudo wget https://releases.jfrog.io/artifactory/artifactory-rpms/artifactory-rpms.repo -O jfrog-artifactory-rpms.repo;
 
-#sudo mv jfrog-artifactory-rpms.repo /etc/yum.repos.d/;
+sudo mv jfrog-artifactory-rpms.repo /etc/yum.repos.d/;
 
-#sudo yum update && sudo yum install jfrog-artifactory-oss -y
+sudo yum update && sudo yum install jfrog-artifactory-oss -y
 
-#sudo systemctl start artifactory.service
+sudo systemctl start artifactory.service
 
 #------------------ Tomcat-----------------------------
-#docker run -d --name tomcat -p 8089:8080 tomcat:lts-community
+docker run -d --name tomcat -p 8089:8080 tomcat:lts-community
 
 
 
