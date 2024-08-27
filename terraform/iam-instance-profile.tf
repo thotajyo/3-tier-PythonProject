@@ -1,4 +1,8 @@
-resource "aws_iam_instance_profile" "instance-profile" {
+data "aws_iam_instance_profile" "existing" {
   name = "naresh-veera-profile"
-  role = aws_iam_role.iam-role.name
 }
+
+
+
+
+
