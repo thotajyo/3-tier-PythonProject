@@ -1,7 +1,7 @@
 pipeline {
     agent any 
     tools {
-        jdk 'jdk'
+
         nodejs 'nodejs'
     }
     environment  {
@@ -92,7 +92,7 @@ pipeline {
                 GIT_USER_NAME = "thotajyo"
             }
             steps {
-                dir('kubernetes/backend.yml') {
+                dir('kubernetes') {
                     withCredentials([string(credentialsId: 'github-token', variable: 'git_token')]) {
                         sh '''
                             git config user.email "nagajyothi5b0@gmail.com"
