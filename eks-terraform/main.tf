@@ -35,22 +35,22 @@ provider "aws" {
     role       = aws_iam_role.master.name
   }
 
-  resource "aws_iam_role" "worker" {
-    name = "veera-eks-worker"
+resource "aws_iam_role" "worker" {
+  name = var.iam_role_name
 
-    assume_role_policy = jsonencode({
-      "Version": "2012-10-17",
-      "Statement": [
-        {
-          "Effect": "Allow",
-          "Principal": {
-            "Service": "ec2.amazonaws.com"
-          },
-          "Action": "sts:AssumeRole"
-        }
-      ]
-    })
-  }
+  assume_role_policy = jsonencode({
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Effect": "Allow",
+        "Principal": {
+          "Service": "ec2.amazonaws.com"
+        },
+        "Action": "sts:AssumeRole"
+      }
+    ]
+  })
+}
 
   resource "aws_iam_policy" "autoscaler" {
     name = "veera-eks-autoscaler-policy"
@@ -104,12 +104,10 @@ provider "aws" {
     role       = aws_iam_role.worker.name
   }
 
-  resource "aws_iam_instance_profile" "worker" {
-    depends_on = [aws_iam_role.worker]
-    name       = "veera-eks-worker-new-profile"
-    role       = aws_iam_role.worker.name
-  }
- 
+resource "aws_iam_instance_profile" "instance_profile" {
+  name = "instance-profile-${var.iam_role_name}"
+  role = aws_iam_role.worker.name
+}
  # data source 
  data "aws_vpc" "main" {
   tags = {
