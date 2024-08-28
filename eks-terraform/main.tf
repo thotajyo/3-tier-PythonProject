@@ -36,7 +36,7 @@ provider "aws" {
   }
 
 resource "aws_iam_role" "worker" {
-  name = var.iam_role_name
+  name = var.aws_iam_role
 
   assume_role_policy = jsonencode({
     "Version": "2012-10-17",
@@ -105,7 +105,7 @@ resource "aws_iam_role" "worker" {
   }
 
 resource "aws_iam_instance_profile" "instance_profile" {
-  name = "instance-profile-${var.iam_role_name}"
+  name = "instance-profile-${var.aws_iam_role}"
   role = aws_iam_role.worker.name
 }
  # data source 
