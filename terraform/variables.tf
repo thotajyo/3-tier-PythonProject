@@ -46,11 +46,7 @@ variable "iam-role" {
   default = "Jumphost-iam-role1"
 }
 
-variable "iam_role" {
-  description = "The name of the IAM role to use for the instance profile [For Eks Cluster-Nodes]"
-  type        = string
-  default     = "veera-eks-worker"  # Default value or set to an empty string if you want it to be required
-}
+
 
 variable "ami_id" {
   description = "AMI ID for the EC2 instance"
